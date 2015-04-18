@@ -102,5 +102,8 @@ public class StartGameController {
 		return uncoveredCards;
 	}
 	
+	public Game getGame(){
+		return new Game(foundations,tableaus,deck,waste);
+	}
 	
 }
