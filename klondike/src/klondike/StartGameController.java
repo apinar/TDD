@@ -1,6 +1,7 @@
 package klondike;
 
 import java.util.ArrayList;
+import java.util.Random;
 import java.util.Stack;
 
 public class StartGameController {
@@ -29,30 +30,41 @@ public class StartGameController {
 		for (int i=0; i < numTableaus; i++){		
 			tableaus.add(new Stack<Card>());
 			}
-		
+
 		for (int i=0; i < numTableaus; i++){		
-			for (int j=0; j < numTableaus; j++){
+			for (int j=i; j < numTableaus; j++){
 				
 				if (j==i){
 					//poner carta boca arriba
 					tableaus.get(i).add(extraerCarta(serving).turnOver());
-				} else if (j>i){
+				} else {
 					//poner carta boca abajo
 					tableaus.get(i).add(extraerCarta(serving));
-				}
-				
+					}
 			}
 			
-			}
+		}
 		
+		for (int i=0; i < initNumCardsInDeck; i++){
+			if (!serving.used[i]){
+				deck.add(new Card(serving.face[i],serving.suit[i]));
+			}
+		}
 		
 	}
 	
 	private Card extraerCarta(FullDeck serving) {
-		// TODO Auto-generated method stub
-		return null;
+		 Random rnd = new Random();
+		 int randomNum;
+		 do {
+			 randomNum = rnd.nextInt(initNumCardsInDeck-1);
+		 } while (serving.used[randomNum]);
+		 
+		 serving.used[randomNum] = true;
+		return new Card(serving.face[randomNum],serving.suit[randomNum]);
 	}
 
+	
 	public int sizeWaste() {
 		return waste.size();
 	}
