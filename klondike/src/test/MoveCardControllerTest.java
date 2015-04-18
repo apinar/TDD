@@ -11,7 +11,6 @@ import klondike.StartGameController;
 import klondike.Suits;
 
 import org.junit.Before;
-import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MoveCardControllerTest {
@@ -28,7 +27,7 @@ public class MoveCardControllerTest {
 	
 
 	@Test
-	public void fromDeckToWasteTest() {
+	public void fromDeckToWasteTest() throws Exception {
 		
 		Game game = moveCardController.getGame();
 		Stack<Card> stack = game.getWaste();
@@ -54,7 +53,7 @@ public class MoveCardControllerTest {
 	
 	
 	@Test
-	public void fromDeckToEmptyWasteTest() {		
+	public void fromDeckToEmptyWasteTest() throws Exception {		
 		startGameController = new StartGameController();
 		moveCardController = new MoveCardController(startGameController.getGame());
 		
@@ -70,8 +69,8 @@ public class MoveCardControllerTest {
 	}
 	
 	
-	@Test
-	public void fromEmptyDeckToWasteTest() {		
+	@Test(expected=Exception.class)
+	public void fromEmptyDeckToWasteTest() throws Exception {		
 		Game game = moveCardController.getGame();
 		Stack<Card> stack = game.getWaste();
 		stack.add(new Card(13,Suits.DIAMONDS));
@@ -80,22 +79,27 @@ public class MoveCardControllerTest {
 		game.setDeck(empty);
 		moveCardController.setGame(game);
 		
-		Card firstWaste = moveCardController.getFirstCardWaste();
 		Card firstDeck = moveCardController.getFirstCardDeck();
 		moveCardController.fromDeckToWaste();
-		Card newWaste = moveCardController.getFirstCardWaste();
-		Card newDeck = moveCardController.getFirstCardDeck();	
 		
 		assertNull(firstDeck);
 		
 	}
+		
 	
+	@Test
+	public void fromWasteFirstToFoundationTest(){
+		
+		
+	}
 	
 	
 	@Test
-	public void fromWasteToFoundationTest(){
+	public void fromWasteNotFirstToFoundationTest(){
+		
 		
 	}
+	
 	
 	@Test
 	public void fromWasteToTableauTest(){
