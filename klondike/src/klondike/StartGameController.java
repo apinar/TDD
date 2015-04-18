@@ -36,10 +36,10 @@ public class StartGameController {
 				
 				if (j==i){
 					//poner carta boca arriba
-					tableaus.get(i).add(extraerCarta(serving).turnOver());
+					tableaus.get(j).add(extraerCarta(serving).turnOver());
 				} else {
 					//poner carta boca abajo
-					tableaus.get(i).add(extraerCarta(serving));
+					tableaus.get(j).add(extraerCarta(serving));
 					}
 			}
 			
@@ -84,11 +84,11 @@ public class StartGameController {
 	}
 
 	public ArrayList<Integer> sizeCoveredCardsTableaus() {
-		ArrayList<Integer> list = new ArrayList<Integer>();
-		for (int i = 0; i < numTableaus ; i++){
-			list.add(i+1);
-		}		
-		return list;
+		ArrayList<Integer> sizetableaus = new ArrayList<Integer>();
+		for (Stack<Card> tableau : tableaus){
+			sizetableaus.add(tableau.size());
+		}			
+		return sizetableaus;
 	}
 
 	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {		
