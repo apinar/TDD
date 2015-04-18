@@ -8,7 +8,7 @@ public class MoveCardControllerTest {
 
 	@Test
 	public void fromDeckToWasteTest() {
-				
+		
 	}
 	
 	@Test

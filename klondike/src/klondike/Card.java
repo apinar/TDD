@@ -2,10 +2,10 @@ package klondike;
 
 public class Card {
 	private boolean uncovered;
-	private String face; 
+	private Integer face; 
 	private Suits suit;
 	
-	public Card(String face, Suits suit){
+	public Card(Integer face, Suits suit){
 		this.uncovered = false;
 		this.setFace(face);
 		this.setSuit(suit);		
@@ -28,11 +28,11 @@ public class Card {
 		this.suit = suit;
 	}
 
-	public String getFace() {
+	public Integer getFace() {
 		return face;
 	}
 
-	public void setFace(String face) {
+	public void setFace(Integer face) {
 		this.face = face;
 	}
 }

@@ -2,10 +2,10 @@ package klondike;
 
 public class FullDeck {
 	
-	public String[] face = {"1","2","3","4","5","6","7","8","9","10","J","Q","K",
-							"1","2","3","4","5","6","7","8","9","10","J","Q","K",
-							"1","2","3","4","5","6","7","8","9","10","J","Q","K",
-							"1","2","3","4","5","6","7","8","9","10","J","Q","K"};
+	public Integer[] face = {1,2,3,4,5,6,7,8,9,10,11,12,13,
+							 1,2,3,4,5,6,7,8,9,10,11,12,13,
+							 1,2,3,4,5,6,7,8,9,10,11,12,13,
+							 1,2,3,4,5,6,7,8,9,10,11,12,13};
 
 	public Suits[] suit = {Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,
 							Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,
