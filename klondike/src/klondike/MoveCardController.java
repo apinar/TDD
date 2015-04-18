@@ -14,12 +14,17 @@ public class MoveCardController {
 	}
 	
 	
-	public void fromDeckToWaste(){
-		Card card = game.getDeck().pop();
-		card.turnOver();
-		Stack<Card> stack = game.getWaste();
-		stack.push(card);
-		game.setWaste(stack);		
+	public void fromDeckToWaste() {
+		try{
+			Card card = game.getDeck().pop();
+			card.turnOver();
+			Stack<Card> stack = game.getWaste();
+			stack.push(card);
+			game.setWaste(stack);
+		} catch (Exception e){
+			
+		}
+				
 	}
 
 	public void fromWasteToFoundation(){

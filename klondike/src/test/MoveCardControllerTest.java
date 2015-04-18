@@ -11,6 +11,7 @@ import klondike.StartGameController;
 import klondike.Suits;
 
 import org.junit.Before;
+import org.junit.BeforeClass;
 import org.junit.Test;
 
 public class MoveCardControllerTest {
@@ -50,6 +51,46 @@ public class MoveCardControllerTest {
 		assertFalse((newDeck.getFace() == newWaste.getFace()) && (newDeck.getSuit() == newWaste.getSuit()));
 		
 	}
+	
+	
+	@Test
+	public void fromDeckToEmptyWasteTest() {		
+		startGameController = new StartGameController();
+		moveCardController = new MoveCardController(startGameController.getGame());
+		
+		Card firstWaste = moveCardController.getFirstCardWaste();
+		Card firstDeck = moveCardController.getFirstCardDeck();
+		moveCardController.fromDeckToWaste();
+		Card newWaste = moveCardController.getFirstCardWaste();
+		Card newDeck = moveCardController.getFirstCardDeck();	
+		
+		assertNull(firstWaste);
+		assertTrue((firstDeck.getFace() == newWaste.getFace()) && (firstDeck.getSuit() == newWaste.getSuit()));
+		assertFalse((newDeck.getFace() == newWaste.getFace()) && (newDeck.getSuit() == newWaste.getSuit()));		
+	}
+	
+	
+	@Test
+	public void fromEmptyDeckToWasteTest() {		
+		Game game = moveCardController.getGame();
+		Stack<Card> stack = game.getWaste();
+		stack.add(new Card(13,Suits.DIAMONDS));
+		game.setWaste(stack);
+		Stack<Card> empty = new Stack<Card>();
+		game.setDeck(empty);
+		moveCardController.setGame(game);
+		
+		Card firstWaste = moveCardController.getFirstCardWaste();
+		Card firstDeck = moveCardController.getFirstCardDeck();
+		moveCardController.fromDeckToWaste();
+		Card newWaste = moveCardController.getFirstCardWaste();
+		Card newDeck = moveCardController.getFirstCardDeck();	
+		
+		assertNull(firstDeck);
+		
+	}
+	
+	
 	
 	@Test
 	public void fromWasteToFoundationTest(){
