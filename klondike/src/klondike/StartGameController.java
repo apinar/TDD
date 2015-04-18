@@ -72,9 +72,9 @@ public class StartGameController {
 	
 	public ArrayList<Integer> sizeFoundations() {
 		ArrayList<Integer> sizeFoundations = new ArrayList<Integer>();
-		for(int i = 0; i < numFoundations; i++){
-			sizeFoundations.add(0);
-		}					
+		for (Stack<Card> foundation : foundations){
+			sizeFoundations.add(foundation.size());
+		}			
 		return sizeFoundations;
 	}
 	
