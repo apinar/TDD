@@ -2,12 +2,12 @@ package klondike;
 
 public class FullDeck {
 	
-	public String[] numbers = {"1","2","3","4","5","6","7","8","9","10","J","Q","K",
+	public String[] face = {"1","2","3","4","5","6","7","8","9","10","J","Q","K",
 								"1","2","3","4","5","6","7","8","9","10","J","Q","K",
 								"1","2","3","4","5","6","7","8","9","10","J","Q","K",
 								"1","2","3","4","5","6","7","8","9","10","J","Q","K"};
 
-	public Suits[] suits = {Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,
+	public Suits[] suit = {Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,
 							Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,Suits.SPADES,
 							Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,
 							Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,Suits.HEARTS,
