@@ -1,5 +1,9 @@
 package klondike;
 
+import java.util.Random;
+
+import klondike.Card;
+
 public class MoveCardController {
 	
 	private Game game;
@@ -19,6 +23,20 @@ public class MoveCardController {
 	
 	public void fromWasteToTableau(){
 		
+	}
+
+	public Card getFirstCardDeck() {
+		Random rnd = new Random();
+		int randomNum;
+		randomNum = (rnd.nextInt(12))+1;
+		return new Card(randomNum,Suits.SPADES);
+	}
+
+	public Card getFirstCardWaste() {
+		Random rnd = new Random();
+		int randomNum;
+		randomNum = (rnd.nextInt(12))+1;
+		return new Card(randomNum,Suits.CLUBS);
 	}
 }
 
