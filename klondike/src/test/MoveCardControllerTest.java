@@ -1,9 +1,14 @@
 package test;
 
 import static org.junit.Assert.*;
+
+import java.util.Stack;
+
 import klondike.Card;
+import klondike.Game;
 import klondike.MoveCardController;
 import klondike.StartGameController;
+import klondike.Suits;
 
 import org.junit.Before;
 import org.junit.Test;
@@ -23,6 +28,13 @@ public class MoveCardControllerTest {
 
 	@Test
 	public void fromDeckToWasteTest() {
+		
+		Game game = moveCardController.getGame();
+		Stack<Card> stack = game.getWaste();
+		stack.add(new Card(13,Suits.DIAMONDS));
+		game.setWaste(stack);
+		moveCardController.setGame(game);
+		
 		Card firstWaste = moveCardController.getFirstCardWaste();
 		Card firstDeck = moveCardController.getFirstCardDeck();
 		moveCardController.fromDeckToWaste();

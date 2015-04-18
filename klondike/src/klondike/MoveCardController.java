@@ -1,6 +1,6 @@
 package klondike;
 
-import java.util.Random;
+import java.util.Stack;
 
 import klondike.Card;
 
@@ -8,12 +8,18 @@ public class MoveCardController {
 	
 	private Game game;
 	
+	
 	public MoveCardController(Game game){
 		this.game = game;
 	}
 	
+	
 	public void fromDeckToWaste(){
-		 
+		Card card = game.getDeck().pop();
+		card.turnOver();
+		Stack<Card> stack = game.getWaste();
+		stack.push(card);
+		game.setWaste(stack);		
 	}
 
 	public void fromWasteToFoundation(){
@@ -26,17 +32,26 @@ public class MoveCardController {
 	}
 
 	public Card getFirstCardDeck() {
-		Random rnd = new Random();
-		int randomNum;
-		randomNum = (rnd.nextInt(12))+1;
-		return new Card(randomNum,Suits.SPADES);
+		if (game.getDeck().size() > 0)
+			return game.getDeck().peek();
+		else
+			return null;
 	}
 
 	public Card getFirstCardWaste() {
-		Random rnd = new Random();
-		int randomNum;
-		randomNum = (rnd.nextInt(12))+1;
-		return new Card(randomNum,Suits.CLUBS);
+		if (game.getWaste().size() > 0)
+			return game.getWaste().peek();
+		else
+			return null;
 	}
+	
+	public Game getGame() {
+		return game;
+	}
+
+	public void setGame(Game game) {
+		this.game = game;
+	}
+
 }
 
