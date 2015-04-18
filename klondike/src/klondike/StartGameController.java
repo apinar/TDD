@@ -15,7 +15,7 @@ public class StartGameController {
 		for(int i = 0; i < 4; i++){
 			sizeFoundations.add(0);
 		}					
-		return sizeFoundations();
+		return sizeFoundations;
 	}
 	
 	
@@ -24,13 +24,23 @@ public class StartGameController {
 	}
 
 	public ArrayList<Integer> sizeCoveredCardsTableaus() {
-		// TODO Auto-generated method stub
-		return null;
+		ArrayList<Integer> list = new ArrayList<Integer>();
+		for (int i = 0; i < 7 ; i++){
+			list.add(i+1);
+		}		
+		return list;
 	}
 
-	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {
-		// TODO Auto-generated method stub
-		return null;
+	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {		
+		ArrayList<Stack<Card>> list = new ArrayList<Stack<Card>>();
+		for (int i = 0; i < 7 ; i++){
+			Stack<Card> stack = new Stack<Card>();
+			Card card = new Card();
+			card.turnOver();
+			stack.add(card);
+			list.add(stack);
+		}		
+		return list;
 	}
 	
 	
