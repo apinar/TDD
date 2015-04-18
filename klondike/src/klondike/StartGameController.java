@@ -35,10 +35,8 @@ public class StartGameController {
 			for (int j=i; j < numTableaus; j++){
 				
 				if (j==i){
-					//poner carta boca arriba
 					tableaus.get(j).add(extraerCarta(serving).turnOver());
 				} else {
-					//poner carta boca abajo
 					tableaus.get(j).add(extraerCarta(serving));
 					}
 			}
@@ -92,15 +90,16 @@ public class StartGameController {
 	}
 
 	public ArrayList<Stack<Card>> uncoveredCardsStackTableaus() {		
-		ArrayList<Stack<Card>> list = new ArrayList<Stack<Card>>();
-		for (int i = 0; i < numTableaus ; i++){
-			Stack<Card> stack = new Stack<Card>();
-			Card card = new Card("A",Suits.SPADES);
-			card.turnOver();
-			stack.add(card);
-			list.add(stack);
-		}		
-		return list;
+		ArrayList<Stack<Card>> uncoveredCards = new ArrayList<Stack<Card>>();
+		for (Stack<Card> tableau : tableaus){
+			Stack<Card> uncoveredStack = new Stack<Card>();
+			for (Card card : tableau){
+				if (card.uncovered())
+					uncoveredStack.add(card);
+			}
+			uncoveredCards.add(uncoveredStack);
+		}
+		return uncoveredCards;
 	}
 	
 	
