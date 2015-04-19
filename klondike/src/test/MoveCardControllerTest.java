@@ -175,7 +175,7 @@ public class MoveCardControllerTest {
 	public void fromWasteToTableauTest() throws Exception{
 		Game game = moveCardController.getGame();
 		
-		// Movemos un rey a un tableau vacío - OK
+		// Movemos un rey a un tableau vacío - movimiento correcto
 		Stack<Card> stack = game.getWaste();
 		stack.add(new Card(13,Suits.SPADES));
 		game.setWaste(stack);
@@ -189,7 +189,7 @@ public class MoveCardControllerTest {
 		assertTrue(moveCardController.getGame().getTableaus().get(0).peek().getSuit() == Suits.SPADES);
 		assertTrue(moveCardController.getGame().getWaste().size()==0);
 		
-		// Movemos un rey a un tableau no vacío - Error
+		// Movemos un rey a un tableau no vacío - movimiento erróneo
 		stack = game.getWaste();
 		stack.add(new Card(13,Suits.SPADES));
 		game.setWaste(stack);
@@ -206,7 +206,7 @@ public class MoveCardControllerTest {
 			  assertEquals(e.getMessage(), "Forbidden");
 		  }					
 		
-		//Movemos una carta cualquiera a un tableau vacío - Error
+		//Movemos una carta cualquiera a un tableau vacío - movimiento erróneo
 		stack = game.getWaste();
 		stack.add(new Card(7,Suits.HEARTS));
 		game.setWaste(stack);
@@ -222,7 +222,7 @@ public class MoveCardControllerTest {
 			  assertEquals(e.getMessage(), "Forbidden");
 		  }					
 		
-		// Movemos una carta cualquiera a un tableau incorrecto - Error
+		// Movemos una carta cualquiera a un tableau incorrecto - movimiento erróneo
 		stack = game.getWaste();
 		stack.add(new Card(7,Suits.SPADES));
 		game.setWaste(stack);
@@ -240,7 +240,7 @@ public class MoveCardControllerTest {
 		  }					
 		
 		
-		// Movemos una carta cualquiera a un tableau correcto - OK
+		// Movemos una carta cualquiera a un tableau correcto - movimiento correcto
 		stack = game.getWaste();
 		stack.add(new Card(9,Suits.SPADES));
 		game.setWaste(stack);
