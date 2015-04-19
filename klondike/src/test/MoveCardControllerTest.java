@@ -172,7 +172,7 @@ public class MoveCardControllerTest {
 	
 	
 	@Test
-	public void fromWasteToTableauTest(){
+	public void fromWasteToTableauTest() throws Exception{
 		Game game = moveCardController.getGame();
 		
 		// Movemos un rey a un tableau vacío - OK
