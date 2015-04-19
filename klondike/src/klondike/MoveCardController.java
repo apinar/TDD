@@ -65,7 +65,24 @@ public class MoveCardController {
 
 
 	public void fromWasteToTableau(int index) throws Exception{
+		Card card = game.getWaste().peek();
 		ArrayList<Stack<Card>> tableaus = game.getTableaus();
+		Stack<Card> tableau = tableaus.get(index);
+		if (tableau.size() == 0 ){
+			if (card.getFace() == 13){
+				makeMoveWasteToTableau(index);
+			} else{
+				throw new RuntimeException ( "Forbidden" ) ;
+			}
+		} else if(tableau.peek().getFace() - card.getFace() == 1 && checkColour(tableau.peek(),card)){
+			makeMoveWasteToTableau(index);
+		} else {
+			throw new RuntimeException ( "Forbidden" ) ;
+		}
+			
+		
+		
+		/*ArrayList<Stack<Card>> tableaus = game.getTableaus();
 		Stack<Card> tableau = new Stack<Card>();
 		if (index==0){
 			tableau.push(new Card(13,Suits.SPADES));
@@ -85,12 +102,24 @@ public class MoveCardController {
 			tableaus.set(4, tableau);
 			game.setWaste(new Stack<Card>());
 			game.setTableaus(tableaus);
-		}
+		}*/
 		
 		
 	}
 
 	
+	private boolean checkColour(Card peek, Card card) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+
+
+	private void makeMoveWasteToTableau(int index) {
+		// TODO Auto-generated method stub
+		
+	}
+
+
 	public Card getFirstCardDeck() {
 		if (game.getDeck().size() > 0)
 			return game.getDeck().peek();
