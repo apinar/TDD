@@ -60,7 +60,8 @@ public class MoveCardController {
 		ArrayList<Stack<Card>> foundations = game.getFoundations();
 		foundation.push(card);
 		foundations.set(index, foundation);
-		game.setFoundations(foundations);				
+		game.setFoundations(foundations);
+		game.setWaste(waste);
 	}
 
 
@@ -79,44 +80,24 @@ public class MoveCardController {
 		} else {
 			throw new RuntimeException ( "Forbidden" ) ;
 		}
-			
-		
-		
-		/*ArrayList<Stack<Card>> tableaus = game.getTableaus();
-		Stack<Card> tableau = new Stack<Card>();
-		if (index==0){
-			tableau.push(new Card(13,Suits.SPADES));
-			tableaus.set(0, tableau);
-			game.setWaste(new Stack<Card>());
-			game.setTableaus(tableaus);
-		} else if (index == 1){
-			throw new RuntimeException ( "Forbidden" ) ;
-		} else if (index == 2){
-			throw new RuntimeException ( "Forbidden" ) ;
-		} else if (index == 3){
-			throw new RuntimeException ( "Forbidden" ) ;
-		} else if (index == 4){
-			tableaus = game.getTableaus();
-			tableau = new Stack<Card>();
-			tableau.push(new Card(9,Suits.SPADES));
-			tableaus.set(4, tableau);
-			game.setWaste(new Stack<Card>());
-			game.setTableaus(tableaus);
-		}*/
-		
 		
 	}
 
 	
 	private boolean checkColour(Card peek, Card card) {
-		// TODO Auto-generated method stub
-		return false;
+		return peek.getColour() != card.getColour();			
 	}
 
 
 	private void makeMoveWasteToTableau(int index) {
-		// TODO Auto-generated method stub
-		
+		Stack<Card> waste = game.getWaste();
+		Card card = waste.pop();
+		ArrayList<Stack<Card>> tableaus = game.getTableaus();
+		Stack<Card> tableau = game.getFoundations().get(index);		
+		tableau.push(card);
+		tableaus.set(index, tableau);
+		game.setFoundations(tableaus);
+		game.setWaste(waste);		
 	}
 
 

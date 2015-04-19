@@ -250,11 +250,12 @@ public class MoveCardControllerTest {
 		tableaus.set(4, tableau);
 		game.setTableaus(tableaus);
 		moveCardController.setGame(game);
+		int sizeWasteBeforeMove = moveCardController.getGame().getWaste().size();
 		moveCardController.fromWasteToTableau(4);
 		
 		assertTrue(moveCardController.getGame().getTableaus().get(4).peek().getFace() == 9);
 		assertTrue(moveCardController.getGame().getTableaus().get(4).peek().getSuit() == Suits.SPADES);
-		assertTrue(moveCardController.getGame().getWaste().size()==0);
+		assertTrue(moveCardController.getGame().getWaste().size()+1 == sizeWasteBeforeMove);
 		
 		
 	}

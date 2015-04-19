@@ -4,11 +4,17 @@ public class Card {
 	private boolean uncovered;
 	private Integer face; 
 	private Suits suit;
+	private Colour colour;
 	
+
 	public Card(Integer face, Suits suit){
 		this.uncovered = false;
 		this.setFace(face);
-		this.setSuit(suit);		
+		this.setSuit(suit);
+		if (suit == Suits.SPADES || suit == Suits.CLUBS)
+			colour = Colour.BLACK;
+		else
+			colour = Colour.RED;
 	}
 
 	public boolean uncovered() {
@@ -34,5 +40,9 @@ public class Card {
 
 	public void setFace(Integer face) {
 		this.face = face;
+	}
+	
+	public Colour getColour() {
+		return colour;
 	}
 }
