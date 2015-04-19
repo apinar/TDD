@@ -64,10 +64,11 @@ public class MoveCardController {
 	}
 
 
-	public void fromWasteToTableau(){
+	public void fromWasteToTableau(int i){
 		
 	}
 
+	
 	public Card getFirstCardDeck() {
 		if (game.getDeck().size() > 0)
 			return game.getDeck().peek();
@@ -89,6 +90,7 @@ public class MoveCardController {
 	public void setGame(Game game) {
 		this.game = game;
 	}
+
 
 }
 

@@ -173,6 +173,89 @@ public class MoveCardControllerTest {
 	
 	@Test
 	public void fromWasteToTableauTest(){
+		Game game = moveCardController.getGame();
+		
+		// Movemos un rey a un tableau vacío - OK
+		Stack<Card> stack = game.getWaste();
+		stack.add(new Card(13,Suits.SPADES));
+		game.setWaste(stack);
+		ArrayList<Stack<Card>> tableaus = moveCardController.getGame().getTableaus();
+		Stack<Card> tableau = new Stack<Card>();
+		tableaus.set(0, tableau);
+		game.setTableaus(tableaus);
+		moveCardController.setGame(game);
+		moveCardController.fromWasteToTableau(0);
+		assertTrue(moveCardController.getGame().getTableaus().get(0).peek().getFace() == 13);
+		assertTrue(moveCardController.getGame().getTableaus().get(0).peek().getSuit() == Suits.SPADES);
+		assertTrue(moveCardController.getGame().getWaste().size()==0);
+		
+		// Movemos un rey a un tableau no vacío - Error
+		stack = game.getWaste();
+		stack.add(new Card(13,Suits.SPADES));
+		game.setWaste(stack);
+		tableaus = moveCardController.getGame().getTableaus();
+		tableau = tableaus.get(1);
+		tableau.push(new Card(5,Suits.CLUBS));
+		tableaus.set(1, tableau);
+		game.setTableaus(tableaus);
+		moveCardController.setGame(game);
+		try {
+			moveCardController.fromWasteToTableau(1);
+			 fail("Movimiento no permitido");
+		  } catch (Exception e) {
+			  assertEquals(e.getMessage(), "Forbidden");
+		  }					
+		
+		//Movemos una carta cualquiera a un tableau vacío - Error
+		stack = game.getWaste();
+		stack.add(new Card(7,Suits.HEARTS));
+		game.setWaste(stack);
+		tableaus = moveCardController.getGame().getTableaus();
+		tableau = new Stack<Card>();
+		tableaus.set(2, tableau);
+		game.setTableaus(tableaus);
+		moveCardController.setGame(game);
+		try {
+			moveCardController.fromWasteToTableau(2);
+			 fail("Movimiento no permitido");
+		  } catch (Exception e) {
+			  assertEquals(e.getMessage(), "Forbidden");
+		  }					
+		
+		// Movemos una carta cualquiera a un tableau incorrecto - Error
+		stack = game.getWaste();
+		stack.add(new Card(7,Suits.SPADES));
+		game.setWaste(stack);
+		tableaus = moveCardController.getGame().getTableaus();
+		tableau = tableaus.get(3);
+		tableau.push(new Card(8,Suits.CLUBS));
+		tableaus.set(3, tableau);
+		game.setTableaus(tableaus);
+		moveCardController.setGame(game);
+		try {
+			moveCardController.fromWasteToTableau(3);
+			 fail("Movimiento no permitido");
+		  } catch (Exception e) {
+			  assertEquals(e.getMessage(), "Forbidden");
+		  }					
+		
+		
+		// Movemos una carta cualquiera a un tableau correcto - OK
+		stack = game.getWaste();
+		stack.add(new Card(9,Suits.SPADES));
+		game.setWaste(stack);
+		tableaus = moveCardController.getGame().getTableaus();
+		tableau = tableaus.get(4);
+		tableau.push(new Card(10,Suits.DIAMONDS));
+		tableaus.set(4, tableau);
+		game.setTableaus(tableaus);
+		moveCardController.setGame(game);
+		moveCardController.fromWasteToTableau(4);
+		
+		assertTrue(moveCardController.getGame().getTableaus().get(4).peek().getFace() == 9);
+		assertTrue(moveCardController.getGame().getTableaus().get(4).peek().getSuit() == Suits.SPADES);
+		assertTrue(moveCardController.getGame().getWaste().size()==0);
+		
 		
 	}
 	
